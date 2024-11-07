@@ -1,27 +1,44 @@
 # VS Code Profile
 
-This project is a collection of my VS Code settings and extensions.
+This is my VS Code profile. It includes all the extensions I use and my settings.
 
 ## Ollama
 
-I use Ollama to manage local AI Models. Right now I'm using a custom version of Qwen-1.5b.
+Ollama is a local AI model server that I use to run my LLMs locally:
 
-## Extensions
+```bash
+ollama run qwen2.5-coder:1.5b
+```
 
-### Continue
+## Audio Development
 
-We this extension I handle the Ollama models to prompts directly from VS Code. And autocomplete the code like copilot.
+Extensions to build audio projects:
 
-### React
+- Cmake Tools
+- CMake
+- C/C++
+- Continue (Qwen2.5 / Claude Sonnet)
+- SuperMaven
 
-This extension is disabled by default. But can be enabled in the workspace settings.
+## Web Development
 
-`dsznajder.es7-react-js-snippets`
+Extensions to build web projects:
 
-### Vue
+- Vue Oficial
+- ES7+ React/Redux/React-Native snippets
+- ESLint
+- Prettier
+- Tailwind CSS IntelliSense
+- Stylelint
+- VS DocBlockr
+- YAML
+- Continue (Qwen2.5 / Claude Sonnet)
+- SuperMaven
 
-This extension is disabled by default. But can be enabled in the workspace settings.
+## Cursor
 
-`Vue.volar`
+The profiles are compatible with Cursor.
 
-### Angular
+## Cursor Rules
+
+Coming soon...
