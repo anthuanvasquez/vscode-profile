@@ -14,26 +14,44 @@ ollama run qwen2.5-coder:1.5b
 
 Extensions to build audio projects:
 
-- Cmake Tools
-- CMake
-- C/C++
-- Continue (Qwen2.5 / Claude Sonnet)
-- SuperMaven
+```bash
+code --install-extension ms-vscode.cmake-tools
+code --install-extension twxs.cmake
+code --install-extension ms-vscode.cpptools
+code --install-extension continue.continue
+code --install-extension supermaven.supermaven
+```
 
 ## Web Development
 
 Extensions to build web projects:
 
-- Vue Oficial
-- ES7+ React/Redux/React-Native snippets
-- ESLint
-- Prettier
-- Tailwind CSS IntelliSense
-- Stylelint
-- VS DocBlockr
-- YAML
-- Continue (Qwen2.5 / Claude Sonnet)
-- SuperMaven
+```bash
+code --install-extension Vue.volar
+code --install-extension dsznajder.es7-react-js-snippets
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension yoavbls.pretty-ts-errors
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension stylelint.vscode-stylelint
+code --install-extension jeremyljackson.vs-docblock
+code --install-extension yaml.vscode-yaml-language-server
+code --install-extension supermaven.supermaven
+code --install-extension usernamehw.errorlens
+code --install-extension editorconfig.editorconfig
+code --install-extension wix.vscode-import-cost
+code --install-extension pkief.material-icon-theme
+code --install-extension codeandstuff.package-json-upgrade
+code --install-extension christian-kohler.path-intellisense
+code --install-extension unifiedjs.vscode-mdx
+code --install-extension visualstudioexptteam.vscodeintellicode
+code --install-extension oderwat.indent-rainbow
+code --install-extension continue.continue
+code --install-extension wakatime.vscode-wakatime
+code --install-extension wayou.vscode-todo-highlight
+code --install-extension gruntfuggly.todo-tree
+code --install-extension tal7aouy.rainbow-bracket
+```
 
 ## Cursor
 
