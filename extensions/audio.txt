@@ -1,0 +1,10 @@
+codezombiech.gitignore
+formulahendry.code-runner
+github.vscode-github-actions
+josetr.cmake-language-support-vscode
+ms-dotnettools.vscode-dotnet-runtime
+ms-vscode-remote.remote-wsl
+ms-vscode.cmake-tools
+ms-vscode.cpptools
+twxs.cmake
+visualstudioexptteam.vscodeintellicode

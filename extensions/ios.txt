@@ -1,0 +1,9 @@
+codezombiech.gitignore
+fwcd.kotlin
+github.vscode-github-actions
+llvm-vs-code-extensions.lldb-dap
+pkief.material-icon-theme
+sweetpad.sweetpad
+swiftlang.swift-vscode
+vadimcn.vscode-lldb
+visualstudioexptteam.vscodeintellicode
