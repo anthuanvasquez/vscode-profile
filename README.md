@@ -68,3 +68,10 @@ Installs all resolved extensions (`base.txt` + profile specific) directly into y
 * **To add a global extension (used everywhere):** Add its ID to `extensions/base.txt` and run `./manage.py --build`.
 * **To add a stack-specific extension:** Add its ID to the corresponding file in `extensions/` (e.g. `extensions/audio.txt`) and run `./manage.py --build`.
 * **To change editor settings:** Edit `settings.json` in the root and run `./manage.py --sync` to update your local VS Code, then `./manage.py --build` to keep git tracked profiles updated.
+
+---
+
+## Documentation & References
+
+* [Official VS Code Profiles Documentation](https://code.visualstudio.com/docs/configure/profiles)
+
