@@ -1,62 +1,70 @@
-# VS Code Profile
+# VS Code Profiles
 
-This is my VS Code profile. It includes all the extensions I use and my settings.
+A modular architecture for managing multiple Visual Studio Code profiles without settings duplication.
 
-## Ollama
+## Architecture
 
-Ollama is a local AI model server that I use to run my LLMs locally:
+* **`settings.json`**: Single source of truth for all profiles. Contains global UI, theme (Vision Night), typography (JetBrains Mono), telemetry, Copilot, and language-specific overrides (`[c, cpp]`, `[swift]`, `[csharp]`) for indentation and rulers.
+* **`keybindings.json`**: Shared custom keybindings.
+* **`extensions/`**: Plain text extension manifests (one extension ID per line):
+  * `base.txt`: Shared core extensions used by all profiles (GitLens, ErrorLens, Todo Tree, WakaTime, etc.).
+  * `default.txt`: Web development (ESLint, Prettier, Tailwind CSS, Vue, Prisma, etc.).
+  * `audio.txt`: Audio plugin & C++ development (C/C++, CMake Tools, Code Runner).
+  * `game.txt`: Game development (C#, C# Dev Kit, Unity Tools, Docker).
+  * `ios.txt`: iOS & macOS development (Swift, Sweetpad, LLDB).
+* **`manage.py`**: Standalone CLI utility (Python 3, standard library only, zero dependencies) to build, sync, and install profiles.
+* **`*.code-profile`**: Clean exported profile files (~11 KB each, stripped of internal `globalState` bloat). Compatible with VS Code and Cursor.
 
-```bash
-ollama run qwen2.5-coder:1.5b
-```
+---
 
-## Audio Development
+## CLI Usage (`manage.py`)
 
-Extensions to build audio projects:
-
-```bash
-code --install-extension ms-vscode.cmake-tools
-code --install-extension twxs.cmake
-code --install-extension ms-vscode.cpptools
-code --install-extension continue.continue
-code --install-extension supermaven.supermaven
-```
-
-## Web Development
-
-Extensions to build web projects:
+The script is executable and requires Python 3:
 
 ```bash
-code --install-extension Vue.volar
-code --install-extension dsznajder.es7-react-js-snippets
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension esbenp.prettier-vscode
-code --install-extension yoavbls.pretty-ts-errors
-code --install-extension bradlc.vscode-tailwindcss
-code --install-extension stylelint.vscode-stylelint
-code --install-extension jeremyljackson.vs-docblock
-code --install-extension yaml.vscode-yaml-language-server
-code --install-extension supermaven.supermaven
-code --install-extension usernamehw.errorlens
-code --install-extension editorconfig.editorconfig
-code --install-extension wix.vscode-import-cost
-code --install-extension pkief.material-icon-theme
-code --install-extension codeandstuff.package-json-upgrade
-code --install-extension christian-kohler.path-intellisense
-code --install-extension unifiedjs.vscode-mdx
-code --install-extension visualstudioexptteam.vscodeintellicode
-code --install-extension oderwat.indent-rainbow
-code --install-extension continue.continue
-code --install-extension wakatime.vscode-wakatime
-code --install-extension wayou.vscode-todo-highlight
-code --install-extension gruntfuggly.todo-tree
-code --install-extension tal7aouy.rainbow-bracket
+./manage.py [command]
 ```
 
-## Cursor
+### 1. Build Clean `.code-profile` Files
 
-The profiles are compatible with Cursor.
+Combines `settings.json` + `keybindings.json` + `base.txt` + the profile's specific extension file to produce lightweight `.code-profile` files in the repository root:
 
-## Cursor Rules
+```bash
+./manage.py --build
+```
 
-Coming soon...
+> [!NOTE]
+> Running `./manage.py` without arguments defaults to `--build`.
+
+### 2. Sync Settings to Local VS Code Profiles
+
+Copies `settings.json` and `keybindings.json` directly into your active local VS Code profile directories (`~/Library/Application Support/Code/User/profiles/...`):
+
+```bash
+./manage.py --sync
+```
+
+Use this command whenever you modify `settings.json` or `keybindings.json` to propagate changes across all local profiles immediately.
+
+### 3. Install Extensions via VS Code CLI
+
+Installs all resolved extensions (`base.txt` + profile specific) directly into your VS Code profiles:
+
+```bash
+# Install extensions for a single profile
+./manage.py --install Audio
+./manage.py --install Game
+./manage.py --install iOS
+./manage.py --install Default
+
+# Install extensions for ALL profiles sequentially
+./manage.py --install
+```
+
+---
+
+## Workflow: How to Update Your Setup
+
+* **To add a global extension (used everywhere):** Add its ID to `extensions/base.txt` and run `./manage.py --build`.
+* **To add a stack-specific extension:** Add its ID to the corresponding file in `extensions/` (e.g. `extensions/audio.txt`) and run `./manage.py --build`.
+* **To change editor settings:** Edit `settings.json` in the root and run `./manage.py --sync` to update your local VS Code, then `./manage.py --build` to keep git tracked profiles updated.
